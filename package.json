@@ -1,0 +1,31 @@
+{
+  "name": "node-bd-performance",
+  "version": "1.0.0",
+  "description": "Performance test for node.js and relational database.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonlima/node-bd-performance.git"
+  },
+  "keywords": [
+    "performance",
+    "test",
+    "node.js",
+    "relational",
+    "database"
+  ],
+  "author": "Jonatha Lima <jonatha.lima14@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonlima/node-bd-performance/issues"
+  },
+  "homepage": "https://github.com/jonlima/node-bd-performance#readme",
+  "dependencies": {
+    "async": "^2.1.4",
+    "faker": "^3.1.0",
+    "mysql": "^2.12.0"
+  }
+}
