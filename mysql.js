@@ -10,33 +10,63 @@ var connection = mysql.createConnection({
 	password: ""
 });
 
+var LIMIT = 100;
+
 function createBD(callback){
 	if (connection) {
 		var sql = "CREATE DATABASE IF NOT EXISTS bd_performance_test";
 		connection.query(sql, function(err, results) {
 			if(err) throw err;
-
-			// Setting DATABASE
-			connection.query("USE bd_performance_test");
 			callback();
 		});
 	}
 }
 
-function createTable() {
-	var truncate = "TRUNCATE `user`";
-	var table = "CREATE TABLE IF NOT EXISTS `user` (`id` INT NOT NULL auto_increment, `name` VARCHAR(255) ,`email` VARCHAR(255), `password` VARCHAR(255), PRIMARY KEY (`id`))";
+function createTable(callback) {
+	var truncate = "TRUNCATE `bd_performance_test.user`";
+	var table = "CREATE TABLE IF NOT EXISTS bd_performance_test.user (`id` INT NOT NULL auto_increment, `name` VARCHAR(255) ,`email` VARCHAR(255), `password` VARCHAR(255), PRIMARY KEY (`id`))";
 	
 	connection.query(table, function(err, results) {
 		if (err) throw err;
 		connection.query(truncate, function(err, results) {
-			console.log("success", results);
+			callback();
 		});
 	});
 }
 
+function insert(callback) {
+	var done = 0;
+
+	var execute = function (cb) {
+		var name = faker.name.findName();
+		var email = faker.internet.email();
+		var pass = faker.internet.password();
+		var sql = "INSERT INTO bd_performance_test.user (`name`, `email`, `password`) VALUES (?, ?, ?)";
+
+		connection.query(sql, [name, email, pass], function(err, results) {
+			if(err) throw new Error(err);
+			done++;
+			if (done === LIMIT) {
+				cb();
+			} else {
+				execute(cb);
+			}
+		});
+	}
+
+	console.time('mysql insert');
+	execute(callback);
+}
+
 function main() {
-	createBD(createTable);
+	createBD(function(){
+		createTable(function(){
+			insert(function(){
+				console.timeEnd('mysql insert');
+				process.exit(1);
+			});
+		})
+	})
 }
 
 main();
