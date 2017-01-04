@@ -47,6 +47,7 @@ function insert(callback) {
 			if(err) throw new Error(err);
 			done++;
 			if (done === LIMIT) {
+				console.timeEnd('mysql insert');
 				cb();
 			} else {
 				execute(cb);
@@ -69,6 +70,7 @@ function update(callback) {
 			if(err) throw new Error(err);
 			done++;
 			if (done === LIMIT) {
+				console.timeEnd('mysql update');
 				cb();
 			} else {
 				execute(cb);
@@ -90,6 +92,7 @@ function select(callback) {
 			if(err) throw new Error(err);
 			done++;
 			if (done === LIMIT) {
+				console.timeEnd('mysql select')
 				cb();
 			} else {
 				execute(cb);
@@ -111,6 +114,7 @@ function deleteRows(callback) {
 			if(err) throw new Error(err);
 			done++;
 			if (done === LIMIT) {
+				console.timeEnd('mysql delete');
 				cb();
 			} else {
 				execute(cb);
@@ -122,24 +126,21 @@ function deleteRows(callback) {
 	execute(callback);
 }
 
-function main() {
-	createBD(function(){
-		createTable(function(){
-			insert(function(){
-				console.timeEnd('mysql insert');
-				update(function() {
-					console.timeEnd('mysql update');
-					select(function() {
-						console.timeEnd('mysql select')
-						deleteRows(function(){
-							console.timeEnd('mysql delete');
-							process.exit(1);
-						})
-					})
-				});
-			});
-		})
-	})
+function main(cb){
+	console.log("\n### MYSQL (", LIMIT, "rows): ");
+	async.series([
+		createBD,
+		createTable,
+		insert,
+		update,
+		select,
+		deleteRows
+	], function(err, results) {
+		if(err) throw new Error(err);
+		cb();
+	});
 }
 
-main();
+module.exports = {
+	main: main
+}
