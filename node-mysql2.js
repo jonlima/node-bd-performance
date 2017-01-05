@@ -47,7 +47,7 @@ function insert(callback) {
 			if(err) throw new Error(err);
 			done++;
 			if (done === LIMIT) {
-				console.timeEnd('mysql insert');
+				console.timeEnd('node-mysql insert');
 				cb();
 			} else {
 				execute(cb);
@@ -55,7 +55,7 @@ function insert(callback) {
 		});
 	}
 
-	console.time('mysql insert');
+	console.time('node-mysql insert');
 	execute(callback);
 }
 
@@ -70,7 +70,7 @@ function update(callback) {
 			if(err) throw new Error(err);
 			done++;
 			if (done === LIMIT) {
-				console.timeEnd('mysql update');
+				console.timeEnd('node-mysql update');
 				cb();
 			} else {
 				execute(cb);
@@ -78,7 +78,7 @@ function update(callback) {
 		});
 	}
 
-	console.time('mysql update');
+	console.time('node-mysql update');
 	execute(callback);
 }
 
@@ -92,7 +92,7 @@ function select(callback) {
 			if(err) throw new Error(err);
 			done++;
 			if (done === LIMIT) {
-				console.timeEnd('mysql select')
+				console.timeEnd('node-mysql select')
 				cb();
 			} else {
 				execute(cb);
@@ -100,7 +100,7 @@ function select(callback) {
 		});
 	}
 
-	console.time('mysql select');
+	console.time('node-mysql select');
 	execute(callback);
 }
 
@@ -114,7 +114,7 @@ function deleteRows(callback) {
 			if(err) throw new Error(err);
 			done++;
 			if (done === LIMIT) {
-				console.timeEnd('mysql delete');
+				console.timeEnd('node-mysql delete');
 				cb();
 			} else {
 				execute(cb);
@@ -122,7 +122,7 @@ function deleteRows(callback) {
 		});
 	}
 
-	console.time('mysql delete');
+	console.time('node-mysql delete');
 	execute(callback);
 }
 
