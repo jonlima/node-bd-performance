@@ -17,15 +17,19 @@ node index
 
 #### Test Box
 ------
-#### Config 1
+##### Config 1
 ```
 Intel core i7-4770 3.40 GHz
 12GB DDR3 1600MHz
 1TB 7200 rpm SATA 6Gb/s 
 ```
-#### Config 2
+##### Config 2
 ```
 Intel Core i5-4200U 1.6 GHz
 6GB DDR3L 1600MHz
 SSD 120GB SATA III 6Gb/s 
 ```
+
+#### Results
+------
+![1_table](https://github.com/jonlima/node-bd-performance/blob/master/results/1_table.png)
