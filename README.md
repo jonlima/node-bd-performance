@@ -32,4 +32,4 @@ SSD 120GB SATA III 6Gb/s
 
 #### Results
 ------
-<img src="https://github.com/jonlima/node-bd-performance/blob/master/results/1_table.png" width="450px"> <img src="https://github.com/jonlima/node-bd-performance/blob/master/results/1_graphic.png" width="450px">
+<img src="https://github.com/jonlima/node-bd-performance/blob/master/results/1_table.png" width="400px"> <img src="https://github.com/jonlima/node-bd-performance/blob/master/results/1_graphic.png" width="400px">
