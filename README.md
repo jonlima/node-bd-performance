@@ -1,12 +1,12 @@
 ## Node Database Test Performance
 #### Stack
 ------
-```
 [Async](http://caolan.github.io/async/) : 2.1.4
 [Faker](https://github.com/marak/Faker.js/) : 3.1.0
 [Mysql](https://github.com/mysqljs/mysql) : 2.12.0
 [Node-Mysql2](https://github.com/sidorares/node-mysql2) : 1.1.2
-```
+
+
 #### Installation
 ------
 ```
